@@ -266,6 +266,10 @@ public class FloatingActionMenu {
         }
     }
 
+    public Boolean getAnimated() {
+        return animated;
+    }
+
     /**
      * @return whether the menu is open or not
      */
@@ -522,7 +526,6 @@ public class FloatingActionMenu {
 
         @Override
         public void onClick(View v) {
-            Log.e("heeeerrrree"," ");
             toggle(animated);
         }
     }

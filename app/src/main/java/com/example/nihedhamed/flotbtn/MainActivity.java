@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         SubActionButton btn3dt = subButtons.setContentView(viewBtn2).build();
         SubActionButton btn1dt = subButtons.setContentView(viewBtn1).build();
 
-        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+        final FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
                 .setStartAngle(90) //angle in degrees
                 .setEndAngle(270)
                 .setRadius(200)  //Distance of menu items from action button
@@ -53,24 +53,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "1 dt", Toast.LENGTH_LONG).show();
+                actionMenu.toggle(actionMenu.getAnimated());
             }
         });
         btn3dt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "3 dt", Toast.LENGTH_LONG).show();
+                actionMenu.toggle(actionMenu.getAnimated());
             }
         });
         btn5dt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "5 dt", Toast.LENGTH_LONG).show();
+                actionMenu.toggle(actionMenu.getAnimated());
             }
         });
         btn10dt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "10 dt", Toast.LENGTH_LONG).show();
+                actionMenu.toggle(actionMenu.getAnimated());
             }
         });
     }
