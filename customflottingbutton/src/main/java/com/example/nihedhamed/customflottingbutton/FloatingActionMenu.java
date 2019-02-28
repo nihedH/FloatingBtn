@@ -60,6 +60,8 @@ public class FloatingActionMenu {
 
     private OrientationEventListener orientationListener;
 
+    private View relativeView;
+
     /**
      * Constructor that takes the parameters collected using {@link FloatingActionMenu.Builder}
      * @param mainActionView
@@ -78,7 +80,7 @@ public class FloatingActionMenu {
                               MenuAnimationHandler animationHandler,
                               boolean animated,
                               MenuStateChangeListener stateChangeListener,
-                              final boolean systemOverlay) {
+                              final boolean systemOverlay, View relativeView) {
         this.mainActionView = mainActionView;
         this.startAngle = startAngle;
         this.endAngle = endAngle;
@@ -87,6 +89,7 @@ public class FloatingActionMenu {
         this.animationHandler = animationHandler;
         this.animated = animated;
         this.systemOverlay = systemOverlay;
+        this.relativeView = relativeView;
         // The menu is initially closed.
         this.open = false;
 
@@ -260,10 +263,20 @@ public class FloatingActionMenu {
     public void toggle(boolean animated) {
         if(open) {
             close(animated);
+            hideActionButton();
+            showRelativeView();
         }
         else {
             open(animated);
         }
+    }
+
+    public void hideActionButton() {
+        this.mainActionView.setVisibility(View.GONE);
+    }
+
+    public void showRelativeView() {
+        this.relativeView.setVisibility(View.VISIBLE);
     }
 
     public Boolean getAnimated() {
@@ -602,6 +615,7 @@ public class FloatingActionMenu {
         private int endAngle;
         private int radius;
         private View actionView;
+        private View relativeView;
         private List<Item> subActionItems;
         private MenuAnimationHandler animationHandler;
         private boolean animated;
@@ -711,6 +725,11 @@ public class FloatingActionMenu {
             return this;
         }
 
+        public Builder relativeTo(View relativeView) {
+            this.relativeView = relativeView;
+            return this;
+        }
+
         public FloatingActionMenu build() {
             return new FloatingActionMenu(actionView,
                     startAngle,
@@ -720,7 +739,8 @@ public class FloatingActionMenu {
                     animationHandler,
                     animated,
                     stateChangeListener,
-                    systemOverlay);
+                    systemOverlay,
+                    relativeView);
         }
     }
 

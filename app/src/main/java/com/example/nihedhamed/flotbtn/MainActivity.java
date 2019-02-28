@@ -3,6 +3,7 @@ package com.example.nihedhamed.flotbtn;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.nihedhamed.customflottingbutton.FloatingActionButton;
@@ -12,13 +13,26 @@ import com.example.nihedhamed.customflottingbutton.SubActionButton;
 public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton my_btn;
+    Button btn_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btn_test= findViewById(R.id.btn_test);
         my_btn = findViewById(R.id.my_btn);
         my_btn.setImageBackground(getResources().getDrawable(R.drawable.round_btn));
+
+        btn_test.setVisibility(View.VISIBLE);
+        my_btn.setVisibility(View.GONE);
+
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                my_btn.setVisibility(View.VISIBLE);
+                btn_test.setVisibility(View.GONE);
+            }
+        });
 
         SubActionButton.Builder subButtons = new SubActionButton.Builder(this)
                 .setLayoutParams(this.getResources().getDimensionPixelSize(R.dimen.sub_action_button_width)
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 .addSubActionView(btn3dt)
                 .addSubActionView(btn1dt)
                 .attachTo(my_btn)
+                .relativeTo(btn_test)
                 .build();
         btn1dt.setOnClickListener(new View.OnClickListener() {
             @Override
