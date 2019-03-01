@@ -539,7 +539,10 @@ public class FloatingActionMenu {
 
         @Override
         public void onClick(View v) {
-            toggle(animated);
+            //toggle(animated);
+            close(animated);
+            hideActionButton();
+            showRelativeView();
         }
     }
 

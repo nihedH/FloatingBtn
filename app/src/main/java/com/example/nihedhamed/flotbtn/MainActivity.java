@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton my_btn;
     Button btn_test;
+    FloatingActionMenu actionMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         btn_test.setVisibility(View.VISIBLE);
         my_btn.setVisibility(View.GONE);
-
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                my_btn.setVisibility(View.VISIBLE);
-                btn_test.setVisibility(View.GONE);
-            }
-        });
 
         SubActionButton.Builder subButtons = new SubActionButton.Builder(this)
                 .setLayoutParams(this.getResources().getDimensionPixelSize(R.dimen.sub_action_button_width)
@@ -53,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         SubActionButton btn3dt = subButtons.setContentView(viewBtn2).build();
         SubActionButton btn1dt = subButtons.setContentView(viewBtn1).build();
 
-        final FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+        actionMenu = new FloatingActionMenu.Builder(this)
                 .setStartAngle(90) //angle in degrees
                 .setEndAngle(270)
                 .setRadius(200)  //Distance of menu items from action button
@@ -90,6 +83,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "10 dt", Toast.LENGTH_LONG).show();
                 actionMenu.toggle(actionMenu.getAnimated());
+            }
+        });
+
+
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_test.setVisibility(View.GONE);
+                my_btn.setVisibility(View.VISIBLE);
+                actionMenu.open(actionMenu.getAnimated());
             }
         });
     }
