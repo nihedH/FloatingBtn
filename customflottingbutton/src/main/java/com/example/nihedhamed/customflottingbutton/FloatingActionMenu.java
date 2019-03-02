@@ -60,9 +60,6 @@ public class FloatingActionMenu {
 
     private OrientationEventListener orientationListener;
 
-    private View relativeView;
-
-    private View background;
 
     /**
      * Constructor that takes the parameters collected using {@link FloatingActionMenu.Builder}
@@ -82,7 +79,7 @@ public class FloatingActionMenu {
                               MenuAnimationHandler animationHandler,
                               boolean animated,
                               MenuStateChangeListener stateChangeListener,
-                              final boolean systemOverlay, View relativeView, View background) {
+                              final boolean systemOverlay) {
         this.mainActionView = mainActionView;
         this.startAngle = startAngle;
         this.endAngle = endAngle;
@@ -91,8 +88,6 @@ public class FloatingActionMenu {
         this.animationHandler = animationHandler;
         this.animated = animated;
         this.systemOverlay = systemOverlay;
-        this.relativeView = relativeView;
-        this.background = background;
         // The menu is initially closed.
         this.open = false;
 
@@ -266,24 +261,10 @@ public class FloatingActionMenu {
     public void toggle(boolean animated) {
         if(open) {
             close(animated);
-            hideActionButton();
-            showRelativeView();
         }
         else {
             open(animated);
         }
-    }
-
-    public void hideActionButton() {
-        this.mainActionView.setVisibility(View.GONE);
-    }
-
-    public void showRelativeView() {
-        this.relativeView.setVisibility(View.VISIBLE);
-    }
-
-    public void hideBackground() {
-        this.background.setVisibility(View.GONE);
     }
 
     public Boolean getAnimated() {
@@ -546,11 +527,7 @@ public class FloatingActionMenu {
 
         @Override
         public void onClick(View v) {
-            //toggle(animated);
-            close(animated);
-            hideActionButton();
-            hideBackground();
-            showRelativeView();
+            toggle(animated);
         }
     }
 
@@ -626,8 +603,6 @@ public class FloatingActionMenu {
         private int endAngle;
         private int radius;
         private View actionView;
-        private View relativeView;
-        private View background;
         private List<Item> subActionItems;
         private MenuAnimationHandler animationHandler;
         private boolean animated;
@@ -737,16 +712,6 @@ public class FloatingActionMenu {
             return this;
         }
 
-        public Builder relativeTo(View relativeView) {
-            this.relativeView = relativeView;
-            return this;
-        }
-
-        public Builder setBackground (View background) {
-            this.background = background;
-            return this;
-        }
-
         public FloatingActionMenu build() {
             return new FloatingActionMenu(actionView,
                     startAngle,
@@ -756,9 +721,7 @@ public class FloatingActionMenu {
                     animationHandler,
                     animated,
                     stateChangeListener,
-                    systemOverlay,
-                    relativeView,
-                    background);
+                    systemOverlay);
         }
     }
 

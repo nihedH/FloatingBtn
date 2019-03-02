@@ -5,12 +5,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
-public class FloatingActionButton extends android.support.v7.widget.AppCompatButton {
+public class FloatingActionButton extends RelativeLayout {
 
     public static final int SIZE_NORMAL = 0;
     public static final int SIZE_MINI = 1;

@@ -13,19 +13,20 @@ import com.example.nihedhamed.customflottingbutton.SubActionButton;
 public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton my_btn;
-    Button btn_test;
+    //Button btn_test;
     FloatingActionMenu actionMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn_test= findViewById(R.id.btn_test);
+        //btn_test= findViewById(R.id.btn_test);
         my_btn = findViewById(R.id.my_btn);
-        my_btn.setImageBackground(getResources().getDrawable(R.drawable.round_btn));
+        my_btn.setImageBackground(getResources().getDrawable(R.drawable.slide_operators));
 
-        btn_test.setVisibility(View.VISIBLE);
-        my_btn.setVisibility(View.GONE);
+
+        //btn_test.setVisibility(View.VISIBLE);
+        //my_btn.setVisibility(View.GONE);
 
         SubActionButton.Builder subButtons = new SubActionButton.Builder(this)
                 .setLayoutParams(this.getResources().getDimensionPixelSize(R.dimen.sub_action_button_width)
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 .addSubActionView(btn3dt)
                 .addSubActionView(btn1dt)
                 .attachTo(my_btn)
-                .relativeTo(btn_test)
                 .build();
         btn1dt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        /*
         btn_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,5 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 actionMenu.open(actionMenu.getAnimated());
             }
         });
+        */
     }
 }
